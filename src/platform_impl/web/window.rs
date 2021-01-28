@@ -64,7 +64,7 @@ impl Window {
 
         backend::set_canvas_size(
             window.canvas.borrow().raw(),
-            attr.inner_size.unwrap_or(Size::Logical(LogicalSize {
+            attr.inner_size.unwrap_or (Size::Logical(LogicalSize {
                 width: 1024.0,
                 height: 768.0,
             })),
@@ -207,8 +207,8 @@ impl Window {
     }
 
     #[inline]
-    pub fn set_cursor_grab(&self, _grab: bool) -> Result<(), ExternalError> {
-        Err(ExternalError::NotSupported(NotSupportedError::new()))
+    pub fn set_cursor_grab(&self, grab: bool) -> Result<(), ExternalError> {
+        Ok(self.canvas.borrow().set_cursor_grab(grab))
     }
 
     #[inline]
